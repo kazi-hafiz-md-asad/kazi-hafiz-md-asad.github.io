@@ -79,23 +79,33 @@ The CV buttons will appear automatically.
 
 ## Important profile links
 
-The primary GitHub profile is set to:
-
-`https://github.com/kazi-hafiz-md-asad`
-
-Selected older repositories are linked from:
+All public code and research repositories are linked to:
 
 `https://github.com/donnowhattodo`
+
+The academic website itself is hosted with GitHub Pages at:
+
+`https://kazi-hafiz-md-asad.github.io/`
 
 The About and Contact pages also include Google Scholar, LinkedIn, LeetCode, Deep-ML, and X.
 
 ## Customization files
 
 - `assets/css/style.css` — complete visual design and responsive layout
-- `assets/js/main.js` — dark mode, menus, animations, filters, and copy-email action
+- `assets/js/main.js` — dark mode, menus, reveal animations, filters, and copy-email action
+- `assets/js/research-field.js` — adaptive interactive research-network background
 - `assets/js/site-config.js` — CV and profile-photograph switches
 - `assets/img/profile-placeholder.svg` — temporary researcher portrait illustration
 - `robots.txt` and `sitemap.xml` — search-engine discovery
+
+## Interactive research background
+
+The site uses a custom Canvas 2D research-network effect rather than a third-party
+particle library. This avoids an external CDN/dependency and keeps the effect
+performance-aware: adaptive particle counts, spatial hashing for local connections,
+capped device-pixel ratio, lower idle frame rate, full-rate interaction only while
+the pointer is active, page-visibility pausing, lazy startup after first paint, and
+`prefers-reduced-motion` support.
 
 ## Before replacing your currently published site
 
