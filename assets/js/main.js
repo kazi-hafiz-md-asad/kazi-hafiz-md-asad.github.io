@@ -52,6 +52,21 @@
     });
   }
 
+  const revealElements = Array.from(document.querySelectorAll('.reveal'));
+  const initialViewportLimit = window.innerHeight * 1.08;
+
+  /*
+    Make the first viewport visible synchronously.
+    This prevents a blank first screen if IntersectionObserver is delayed
+    by the browser, GitHub Pages caching, or animation startup.
+  */
+  revealElements.forEach((element) => {
+    const rect = element.getBoundingClientRect();
+    if (rect.top <= initialViewportLimit) {
+      element.classList.add('visible');
+    }
+  });
+
   const observer = 'IntersectionObserver' in window
     ? new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -60,12 +75,28 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.08 })
+      }, {
+        threshold: 0.04,
+        rootMargin: '0px 0px 12% 0px'
+      })
     : null;
 
-  document.querySelectorAll('.reveal').forEach((element) => {
-    if (observer) observer.observe(element);
-    else element.classList.add('visible');
+  revealElements.forEach((element) => {
+    if (element.classList.contains('visible')) return;
+
+    if (observer) {
+      observer.observe(element);
+    } else {
+      element.classList.add('visible');
+    }
+  });
+
+  /*
+    Hidden reveal styling is enabled only AFTER the safe initialization above.
+    If this script ever fails before this point, the content remains visible.
+  */
+  requestAnimationFrame(() => {
+    root.classList.add('reveal-ready');
   });
 
   const publicationButtons = document.querySelectorAll('[data-filter]');
