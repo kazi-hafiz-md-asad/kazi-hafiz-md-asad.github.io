@@ -157,411 +157,233 @@
     }
   
 
+    
+  
     /* ==========================================================
-       MINIMAL ACADEMIC AMBIENT MOTION
-       Lightweight, CSS-only, and reduced-motion friendly.
+       RESEARCH DOT NETWORK BACKGROUND
+       Minimal moving particle field with faint scientific-network lines.
     ========================================================== */
 
-    html {
-      background: var(--paper);
-    }
-
-    body {
-      position: relative;
-      overflow-x: hidden;
-      background: var(--paper);
-    }
-
-    .site-shell {
-      position: relative;
-      z-index: 1;
-    }
-
-    .academic-ambient {
+    .research-network-bg {
       position: fixed;
       inset: 0;
       z-index: 0;
       overflow: hidden;
       pointer-events: none;
       user-select: none;
-      contain: paint;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(37, 99, 235, .055), transparent 28%),
+        radial-gradient(circle at 82% 28%, rgba(14, 165, 233, .045), transparent 30%),
+        radial-gradient(circle at 50% 88%, rgba(99, 102, 241, .035), transparent 32%);
     }
 
-    .ambient-grid {
+    .research-dot-layer {
       position: absolute;
-      inset: -16%;
-      opacity: .6;
+      inset: -8%;
+      opacity: .9;
       background-image:
-        linear-gradient(rgba(37, 99, 235, .035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(37, 99, 235, .035) 1px, transparent 1px);
-      background-size: 58px 58px;
-      -webkit-mask-image: radial-gradient(ellipse 72% 62% at 50% 38%, #000 10%, transparent 76%);
-      mask-image: radial-gradient(ellipse 72% 62% at 50% 38%, #000 10%, transparent 76%);
-      animation: ambientGridDrift 34s linear infinite;
+        radial-gradient(circle, rgba(37, 99, 235, .36) 1.35px, transparent 1.6px),
+        radial-gradient(circle, rgba(14, 165, 233, .22) 1px, transparent 1.35px);
+      background-position:
+        0 0,
+        24px 19px;
+      background-size:
+        52px 52px,
+        78px 78px;
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.95),
+        rgba(0,0,0,.6) 56%,
+        rgba(0,0,0,.18)
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.95),
+        rgba(0,0,0,.6) 56%,
+        rgba(0,0,0,.18)
+      );
+      animation: researchDotDrift 30s linear infinite;
       will-change: transform;
     }
 
-    .ambient-orb {
+    .research-dot-layer.layer-two {
+      opacity: .34;
+      filter: blur(.15px);
+      transform: scale(1.05);
+      background-image:
+        radial-gradient(circle, rgba(37, 99, 235, .42) 1px, transparent 1.3px);
+      background-size: 96px 96px;
+      background-position: 22px 34px;
+      animation: researchDotDriftReverse 42s linear infinite;
+    }
+
+    .research-network-lines {
       position: absolute;
-      border-radius: 999px;
-      opacity: .72;
-      transform: translate3d(0, 0, 0);
-      will-change: transform;
+      inset: 0;
+      opacity: .34;
     }
 
-    .ambient-orb.orb-a {
-      width: min(52vw, 760px);
-      aspect-ratio: 1;
-      top: -22%;
-      right: -16%;
-      background:
-        radial-gradient(
-          circle,
-          rgba(37, 99, 235, .115) 0%,
-          rgba(37, 99, 235, .055) 34%,
-          rgba(37, 99, 235, 0) 72%
-        );
-      animation: ambientOrbA 22s ease-in-out infinite alternate;
+    .research-network-lines svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
     }
 
-    .ambient-orb.orb-b {
-      width: min(46vw, 680px);
-      aspect-ratio: 1;
-      left: -18%;
-      top: 38%;
-      background:
-        radial-gradient(
-          circle,
-          rgba(14, 165, 233, .09) 0%,
-          rgba(14, 165, 233, .04) 34%,
-          rgba(14, 165, 233, 0) 72%
-        );
-      animation: ambientOrbB 27s ease-in-out infinite alternate;
+    .research-network-lines path {
+      fill: none;
+      stroke: rgba(37, 99, 235, .16);
+      stroke-width: .75;
+      stroke-dasharray: 4 13;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+      animation: researchDashFlow 18s linear infinite;
     }
 
-    .ambient-orb.orb-c {
-      width: min(40vw, 600px);
-      aspect-ratio: 1;
-      right: 4%;
-      bottom: -20%;
-      background:
-        radial-gradient(
-          circle,
-          rgba(99, 102, 241, .075) 0%,
-          rgba(99, 102, 241, .025) 38%,
-          rgba(99, 102, 241, 0) 72%
-        );
-      animation: ambientOrbC 31s ease-in-out infinite alternate;
+    .research-network-lines path:nth-child(2) {
+      stroke: rgba(14, 165, 233, .13);
+      animation-duration: 23s;
+      animation-direction: reverse;
     }
 
-    .ambient-ring {
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      top: 17%;
-      right: 7%;
-      border: 1px solid rgba(37, 99, 235, .075);
-      border-radius: 50%;
-      opacity: .65;
-      animation: ambientRing 36s linear infinite;
-      will-change: transform;
+    .research-network-lines path:nth-child(3) {
+      stroke: rgba(99, 102, 241, .11);
+      animation-duration: 28s;
     }
 
-    .ambient-ring::before,
-    .ambient-ring::after {
-      content: "";
-      position: absolute;
-      border: 1px solid rgba(37, 99, 235, .055);
-      border-radius: inherit;
-    }
-
-    .ambient-ring::before {
-      inset: 52px;
-    }
-
-    .ambient-ring::after {
-      inset: 112px;
-    }
-
-    .ambient-node {
+    .research-particle {
       position: absolute;
       width: 5px;
       height: 5px;
-      border: 1px solid rgba(37, 99, 235, .38);
       border-radius: 50%;
-      background: rgba(37, 99, 235, .12);
-      box-shadow: 0 0 0 5px rgba(37, 99, 235, .025);
-      opacity: .7;
+      background: rgba(37, 99, 235, .72);
+      box-shadow:
+        0 0 0 4px rgba(37, 99, 235, .055),
+        0 0 18px rgba(37, 99, 235, .16);
+      opacity: .72;
       will-change: transform, opacity;
     }
 
-    .ambient-node.n1 {
-      top: 17%;
-      left: 12%;
-      animation: academicNodeFloat 12s ease-in-out infinite;
-    }
-
-    .ambient-node.n2 {
-      top: 29%;
-      right: 18%;
-      animation: academicNodeFloat 15s ease-in-out -4s infinite;
-    }
-
-    .ambient-node.n3 {
-      top: 48%;
-      left: 24%;
-      animation: academicNodeFloat 17s ease-in-out -8s infinite;
-    }
-
-    .ambient-node.n4 {
-      top: 63%;
-      right: 12%;
-      animation: academicNodeFloat 14s ease-in-out -5s infinite;
-    }
-
-    .ambient-node.n5 {
-      top: 78%;
-      left: 17%;
-      animation: academicNodeFloat 19s ease-in-out -9s infinite;
-    }
-
-    .ambient-node.n6 {
-      top: 88%;
-      right: 31%;
-      animation: academicNodeFloat 16s ease-in-out -2s infinite;
-    }
-
-    /* Let the page retain its original visual identity while allowing
-       a little of the ambient field to breathe through the hero. */
-    .home-academic-hero {
-      position: relative;
-      isolation: isolate;
-      overflow: clip;
-      background:
-        radial-gradient(circle at 88% 12%, rgba(37, 99, 235, .085), transparent 32%),
-        linear-gradient(180deg, var(--surface), var(--paper));
-      background:
-        radial-gradient(circle at 88% 12%, rgba(37, 99, 235, .085), transparent 32%),
-        linear-gradient(
-          180deg,
-          color-mix(in srgb, var(--surface) 90%, transparent),
-          color-mix(in srgb, var(--paper) 92%, transparent)
-        );
-    }
-
-    .home-academic-hero::after {
+    .research-particle::after {
       content: "";
       position: absolute;
-      width: 440px;
-      height: 440px;
-      right: -160px;
-      top: -180px;
-      z-index: -1;
+      inset: -7px;
       border: 1px solid rgba(37, 99, 235, .09);
       border-radius: 50%;
-      box-shadow:
-        0 0 0 70px rgba(37, 99, 235, .022),
-        0 0 0 140px rgba(37, 99, 235, .014);
-      animation: heroHaloBreath 13s ease-in-out infinite alternate;
-      pointer-events: none;
     }
 
-    .home-academic-hero .hero-grid-bg {
-      opacity: .24;
-      animation: heroGridFloat 20s ease-in-out infinite alternate;
-      will-change: transform;
+    .research-particle.p1 { left: 9%; top: 18%; animation: particleOrbitA 16s ease-in-out infinite; }
+    .research-particle.p2 { left: 26%; top: 34%; animation: particleOrbitB 20s ease-in-out -5s infinite; }
+    .research-particle.p3 { right: 18%; top: 17%; animation: particleOrbitC 18s ease-in-out -2s infinite; }
+    .research-particle.p4 { right: 8%; top: 46%; animation: particleOrbitA 23s ease-in-out -9s infinite; }
+    .research-particle.p5 { left: 18%; top: 68%; animation: particleOrbitC 24s ease-in-out -7s infinite; }
+    .research-particle.p6 { right: 32%; top: 76%; animation: particleOrbitB 21s ease-in-out -11s infinite; }
+    .research-particle.p7 { left: 48%; top: 52%; animation: particleOrbitA 27s ease-in-out -13s infinite; }
+    .research-particle.p8 { right: 12%; top: 88%; animation: particleOrbitC 22s ease-in-out -4s infinite; }
+
+    .research-data-ring {
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      right: 4%;
+      top: 13%;
+      border: 1px solid rgba(37, 99, 235, .06);
+      border-radius: 50%;
+      opacity: .7;
+      animation: researchRingRotate 38s linear infinite;
     }
 
-    /* Refined micro-interactions: restrained, not "portfolio-template" flashy. */
-    .home-academic-hero .profile-panel,
-    .pillar-card,
-    .signal-grid a,
-    .pub-row,
-    .academic-contact-card {
-      transition:
-        transform .38s cubic-bezier(.2, .8, .2, 1),
-        border-color .38s ease,
-        box-shadow .38s ease;
+    .research-data-ring::before,
+    .research-data-ring::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px dashed rgba(37, 99, 235, .055);
     }
 
-    .home-academic-hero .profile-panel:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 22px 54px rgba(8, 17, 31, .11);
+    .research-data-ring::before { inset: 48px; }
+    .research-data-ring::after  { inset: 106px; }
+
+    .research-data-ring span {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, .48);
+      top: 50%;
+      left: -2px;
+      transform: translateY(-50%);
+      box-shadow: 0 0 14px rgba(37, 99, 235, .18);
     }
 
-    .pillar-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(37, 99, 235, .18);
+    @keyframes researchDotDrift {
+      from { transform: translate3d(0, 0, 0); }
+      to   { transform: translate3d(52px, 52px, 0); }
     }
 
-    .signal-grid a:hover {
-      transform: translateY(-2px);
+    @keyframes researchDotDriftReverse {
+      from { transform: translate3d(0, 0, 0) scale(1.05); }
+      to   { transform: translate3d(-96px, 96px, 0) scale(1.05); }
     }
 
-    .pub-row:hover {
-      transform: translateX(3px);
+    @keyframes researchDashFlow {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -170; }
     }
 
-    .button,
-    .text-link,
-    .quick-links a {
-      transition:
-        transform .25s ease,
-        opacity .25s ease,
-        background-color .25s ease,
-        border-color .25s ease,
-        color .25s ease;
+    @keyframes researchRingRotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
     }
 
-    .button:hover,
-    .quick-links a:hover {
-      transform: translateY(-2px);
+    @keyframes particleOrbitA {
+      0%,100% { transform: translate3d(0,0,0) scale(.9); opacity: .42; }
+      35%     { transform: translate3d(20px,-14px,0) scale(1.15); opacity: .85; }
+      70%     { transform: translate3d(-11px,18px,0) scale(1); opacity: .62; }
     }
 
-    @keyframes ambientGridDrift {
-      0% {
-        transform: translate3d(0, 0, 0);
-      }
-      50% {
-        transform: translate3d(22px, 12px, 0);
-      }
-      100% {
-        transform: translate3d(58px, 58px, 0);
-      }
+    @keyframes particleOrbitB {
+      0%,100% { transform: translate3d(0,0,0) scale(.85); opacity: .38; }
+      45%     { transform: translate3d(-18px,-22px,0) scale(1.12); opacity: .82; }
+      75%     { transform: translate3d(12px,10px,0) scale(.96); opacity: .58; }
     }
 
-    @keyframes ambientOrbA {
-      0% {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-      100% {
-        transform: translate3d(-7vw, 6vh, 0) scale(1.08);
-      }
+    @keyframes particleOrbitC {
+      0%,100% { transform: translate3d(0,0,0) scale(.92); opacity: .4; }
+      40%     { transform: translate3d(16px,17px,0) scale(1.08); opacity: .8; }
+      80%     { transform: translate3d(-15px,-9px,0) scale(1); opacity: .55; }
     }
 
-    @keyframes ambientOrbB {
-      0% {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-      100% {
-        transform: translate3d(8vw, -7vh, 0) scale(1.1);
-      }
-    }
-
-    @keyframes ambientOrbC {
-      0% {
-        transform: translate3d(0, 0, 0) scale(.96);
-      }
-      100% {
-        transform: translate3d(-6vw, -6vh, 0) scale(1.08);
-      }
-    }
-
-    @keyframes ambientRing {
-      0% {
-        transform: rotate(0deg) translate3d(0, 0, 0);
-      }
-      50% {
-        transform: rotate(180deg) translate3d(8px, -12px, 0);
-      }
-      100% {
-        transform: rotate(360deg) translate3d(0, 0, 0);
-      }
-    }
-
-    @keyframes academicNodeFloat {
-      0%,
-      100% {
-        transform: translate3d(0, 0, 0) scale(.9);
-        opacity: .38;
-      }
-      50% {
-        transform: translate3d(10px, -18px, 0) scale(1.15);
-        opacity: .9;
-      }
-    }
-
-    @keyframes heroGridFloat {
-      0% {
-        transform: translate3d(0, 0, 0);
-      }
-      100% {
-        transform: translate3d(10px, -8px, 0);
-      }
-    }
-
-    @keyframes heroHaloBreath {
-      0% {
-        transform: scale(.96);
-        opacity: .65;
-      }
-      100% {
-        transform: scale(1.05);
-        opacity: 1;
-      }
-    }
-
-    @media (max-width: 980px) {
-      .ambient-ring {
-        width: 330px;
-        height: 330px;
-        right: -110px;
-        opacity: .45;
+    @media (max-width: 760px) {
+      .research-dot-layer {
+        background-size: 44px 44px, 70px 70px;
+        opacity: .62;
       }
 
-      .ambient-grid {
-        opacity: .46;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .ambient-grid {
-        background-size: 46px 46px;
-        opacity: .34;
+      .research-network-lines {
+        opacity: .2;
       }
 
-      .ambient-orb.orb-a {
-        width: 520px;
-        right: -320px;
+      .research-data-ring {
+        width: 230px;
+        height: 230px;
+        right: -105px;
+        top: 16%;
       }
 
-      .ambient-orb.orb-b {
-        width: 470px;
-        left: -320px;
-      }
-
-      .ambient-orb.orb-c,
-      .ambient-ring,
-      .ambient-node.n2,
-      .ambient-node.n4,
-      .ambient-node.n6 {
+      .research-particle.p2,
+      .research-particle.p4,
+      .research-particle.p6,
+      .research-particle.p8 {
         display: none;
-      }
-
-      .pub-row:hover,
-      .pillar-card:hover,
-      .signal-grid a:hover,
-      .home-academic-hero .profile-panel:hover {
-        transform: none;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .academic-ambient *,
-      .home-academic-hero::after,
-      .home-academic-hero .hero-grid-bg {
+      .research-dot-layer,
+      .research-network-lines path,
+      .research-particle,
+      .research-data-ring {
         animation: none !important;
-      }
-
-      .home-academic-hero .profile-panel,
-      .pillar-card,
-      .signal-grid a,
-      .pub-row,
-      .academic-contact-card,
-      .button,
-      .text-link,
-      .quick-links a {
-        transition-duration: .01ms !important;
       }
     }
 
@@ -594,18 +416,28 @@
 </head>
 <body>
 
-  <div class="academic-ambient" aria-hidden="true">
-    <div class="ambient-grid"></div>
-    <div class="ambient-orb orb-a"></div>
-    <div class="ambient-orb orb-b"></div>
-    <div class="ambient-orb orb-c"></div>
-    <div class="ambient-ring"></div>
-    <span class="ambient-node n1"></span>
-    <span class="ambient-node n2"></span>
-    <span class="ambient-node n3"></span>
-    <span class="ambient-node n4"></span>
-    <span class="ambient-node n5"></span>
-    <span class="ambient-node n6"></span>
+  <div class="research-network-bg" aria-hidden="true">
+    <div class="research-dot-layer"></div>
+    <div class="research-dot-layer layer-two"></div>
+
+    <div class="research-network-lines">
+      <svg viewBox="0 0 1600 1000" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-120 210 C 180 50, 360 390, 650 245 S 1160 85, 1710 260"></path>
+        <path d="M-80 610 C 250 430, 460 760, 790 590 S 1240 420, 1690 640"></path>
+        <path d="M240 -80 C 360 220, 670 130, 770 420 S 930 760, 1260 1080"></path>
+      </svg>
+    </div>
+
+    <span class="research-particle p1"></span>
+    <span class="research-particle p2"></span>
+    <span class="research-particle p3"></span>
+    <span class="research-particle p4"></span>
+    <span class="research-particle p5"></span>
+    <span class="research-particle p6"></span>
+    <span class="research-particle p7"></span>
+    <span class="research-particle p8"></span>
+
+    <div class="research-data-ring"><span></span></div>
   </div>
 
 <a class="skip-link" href="#main">Skip to content</a>
