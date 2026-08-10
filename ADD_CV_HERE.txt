@@ -1,0 +1,9 @@
+Place your CV in this folder with this exact filename:
+
+Kazi_Hafiz_Md_Asad_CV.pdf
+
+Then open assets/js/site-config.js and change:
+showCV: false
+
+to:
+showCV: true
