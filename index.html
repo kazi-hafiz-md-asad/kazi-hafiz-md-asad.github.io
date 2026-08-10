@@ -363,6 +363,129 @@
       }
     }
 
+  
+    /* ==========================================================
+       TRANSFORMER CODE WINDOW — ALWAYS DARK
+       Keeps the selected software project code panel readable
+       and visually consistent in both light and dark themes.
+    ========================================================== */
+
+    .home-feature .code-window {
+      position: relative;
+      overflow: hidden;
+      transform: none;
+      color: #dbeafe;
+      border: 1px solid rgba(148, 163, 184, .18);
+      background:
+        radial-gradient(circle at 88% 8%, rgba(59, 130, 246, .10), transparent 34%),
+        linear-gradient(180deg, #0b1220 0%, #08111f 100%);
+      box-shadow:
+        0 24px 60px rgba(8, 17, 31, .16),
+        inset 0 1px 0 rgba(255,255,255,.035);
+    }
+
+    .home-feature .code-window::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(148, 163, 184, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, .018) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: .55;
+    }
+
+    .home-feature .code-window-bar {
+      position: relative;
+      z-index: 1;
+      color: #94a3b8;
+      border-bottom: 1px solid rgba(148, 163, 184, .14);
+      background: rgba(15, 23, 42, .96);
+    }
+
+    .home-feature .code-window-bar code {
+      color: #94a3b8;
+    }
+
+    .home-feature .code-window-bar > span:nth-child(1) {
+      background: #fb7185;
+    }
+
+    .home-feature .code-window-bar > span:nth-child(2) {
+      background: #fbbf24;
+    }
+
+    .home-feature .code-window-bar > span:nth-child(3) {
+      background: #34d399;
+    }
+
+    .home-feature .code-window pre {
+      position: relative;
+      z-index: 1;
+      color: #dbeafe;
+      background: transparent;
+    }
+
+    .home-feature .code-window pre code {
+      color: inherit;
+      background: transparent;
+    }
+
+    .home-feature .code-window .code-comment {
+      color: #64748b;
+    }
+
+    .home-feature .code-window .code-line {
+      color: #cbd5e1;
+    }
+
+    .home-feature .code-window .code-line b {
+      color: #60a5fa;
+      font-weight: 700;
+    }
+
+    .home-feature .code-window .code-line.active {
+      color: #f8fafc;
+      background: linear-gradient(
+        90deg,
+        rgba(37, 99, 235, .18),
+        rgba(37, 99, 235, .045)
+      );
+      border-left-color: #3b82f6;
+    }
+
+    .home-feature .code-window .code-line.active b {
+      color: #93c5fd;
+    }
+
+    /* Explicit light-theme override:
+       this prevents global light-mode card/code rules from turning
+       the editor surface white. */
+    html:not([data-theme="dark"]) .home-feature .code-window,
+    html[data-theme="light"] .home-feature .code-window {
+      color: #dbeafe !important;
+      border-color: rgba(100, 116, 139, .22) !important;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(59, 130, 246, .11), transparent 34%),
+        linear-gradient(180deg, #0b1220 0%, #08111f 100%) !important;
+    }
+
+    html:not([data-theme="dark"]) .home-feature .code-window-bar,
+    html[data-theme="light"] .home-feature .code-window-bar {
+      color: #94a3b8 !important;
+      background: rgba(15, 23, 42, .98) !important;
+      border-bottom-color: rgba(148, 163, 184, .14) !important;
+    }
+
+    html:not([data-theme="dark"]) .home-feature .code-window pre,
+    html:not([data-theme="dark"]) .home-feature .code-window pre code,
+    html[data-theme="light"] .home-feature .code-window pre,
+    html[data-theme="light"] .home-feature .code-window pre code {
+      color: #dbeafe !important;
+      background: transparent !important;
+    }
+
   </style>
   <script>document.documentElement.classList.add('js');</script>
 
