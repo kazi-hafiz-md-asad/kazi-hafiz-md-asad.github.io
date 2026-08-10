@@ -1,0 +1,15 @@
+{
+  "name": "Kazi Hafiz Md. Asad — Research Portfolio",
+  "short_name": "Kazi Asad",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f9fc",
+  "theme_color": "#08111f",
+  "icons": [
+    {
+      "src": "assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kazi-hafiz-md-asad.github.io/sitemap.xml
