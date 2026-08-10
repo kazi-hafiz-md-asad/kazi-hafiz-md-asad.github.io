@@ -159,231 +159,207 @@
 
     
   
+    
     /* ==========================================================
-       RESEARCH DOT NETWORK BACKGROUND
-       Minimal moving particle field with faint scientific-network lines.
+       INTERACTIVE RESEARCH PARTICLE FIELD
+       Mouse-responsive scientific network background.
+       Canvas-powered, high-DPI aware, and reduced-motion safe.
     ========================================================== */
 
-    .research-network-bg {
+    html {
+      background: var(--paper);
+    }
+
+    body {
+      position: relative;
+      overflow-x: hidden;
+      background: var(--paper);
+    }
+
+    .site-shell {
+      position: relative;
+      z-index: 2;
+      background: transparent;
+    }
+
+    #research-particle-canvas {
       position: fixed;
       inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-      user-select: none;
-      background:
-        radial-gradient(circle at 18% 20%, rgba(37, 99, 235, .055), transparent 28%),
-        radial-gradient(circle at 82% 28%, rgba(14, 165, 233, .045), transparent 30%),
-        radial-gradient(circle at 50% 88%, rgba(99, 102, 241, .035), transparent 32%);
-    }
-
-    .research-dot-layer {
-      position: absolute;
-      inset: -8%;
-      opacity: .9;
-      background-image:
-        radial-gradient(circle, rgba(37, 99, 235, .36) 1.35px, transparent 1.6px),
-        radial-gradient(circle, rgba(14, 165, 233, .22) 1px, transparent 1.35px);
-      background-position:
-        0 0,
-        24px 19px;
-      background-size:
-        52px 52px,
-        78px 78px;
-      -webkit-mask-image: linear-gradient(
-        to bottom,
-        rgba(0,0,0,.95),
-        rgba(0,0,0,.6) 56%,
-        rgba(0,0,0,.18)
-      );
-      mask-image: linear-gradient(
-        to bottom,
-        rgba(0,0,0,.95),
-        rgba(0,0,0,.6) 56%,
-        rgba(0,0,0,.18)
-      );
-      animation: researchDotDrift 30s linear infinite;
-      will-change: transform;
-    }
-
-    .research-dot-layer.layer-two {
-      opacity: .34;
-      filter: blur(.15px);
-      transform: scale(1.05);
-      background-image:
-        radial-gradient(circle, rgba(37, 99, 235, .42) 1px, transparent 1.3px);
-      background-size: 96px 96px;
-      background-position: 22px 34px;
-      animation: researchDotDriftReverse 42s linear infinite;
-    }
-
-    .research-network-lines {
-      position: absolute;
-      inset: 0;
-      opacity: .34;
-    }
-
-    .research-network-lines svg {
       width: 100%;
       height: 100%;
-      overflow: visible;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .94;
     }
 
-    .research-network-lines path {
-      fill: none;
-      stroke: rgba(37, 99, 235, .16);
-      stroke-width: .75;
-      stroke-dasharray: 4 13;
-      stroke-linecap: round;
-      vector-effect: non-scaling-stroke;
-      animation: researchDashFlow 18s linear infinite;
+    .research-canvas-wash {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 13%, rgba(37, 99, 235, .105), transparent 30%),
+        radial-gradient(circle at 83% 23%, rgba(14, 165, 233, .075), transparent 28%),
+        radial-gradient(circle at 46% 80%, rgba(99, 102, 241, .055), transparent 34%);
+      mix-blend-mode: normal;
     }
 
-    .research-network-lines path:nth-child(2) {
-      stroke: rgba(14, 165, 233, .13);
-      animation-duration: 23s;
-      animation-direction: reverse;
+    /* Keep the research field visible without sacrificing readability. */
+    .home-academic-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: clip;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(37, 99, 235, .07), transparent 32%),
+        linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--surface) 88%, transparent),
+          color-mix(in srgb, var(--paper) 91%, transparent)
+        );
+      backdrop-filter: blur(1.4px);
+      -webkit-backdrop-filter: blur(1.4px);
     }
 
-    .research-network-lines path:nth-child(3) {
-      stroke: rgba(99, 102, 241, .11);
-      animation-duration: 28s;
+    .signal-strip {
+      position: relative;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
     }
 
-    .research-particle {
+    main > .section {
+      position: relative;
+      background: color-mix(in srgb, var(--paper) 91%, transparent);
+      backdrop-filter: blur(1.3px);
+      -webkit-backdrop-filter: blur(1.3px);
+    }
+
+    .home-academic-hero::before {
+      content: "";
       position: absolute;
-      width: 5px;
-      height: 5px;
+      width: clamp(300px, 34vw, 560px);
+      aspect-ratio: 1;
+      right: -11%;
+      top: -29%;
+      z-index: -1;
       border-radius: 50%;
-      background: rgba(37, 99, 235, .72);
+      border: 1px solid rgba(37, 99, 235, .12);
       box-shadow:
-        0 0 0 4px rgba(37, 99, 235, .055),
-        0 0 18px rgba(37, 99, 235, .16);
-      opacity: .72;
-      will-change: transform, opacity;
+        0 0 0 54px rgba(37, 99, 235, .025),
+        0 0 0 108px rgba(37, 99, 235, .014),
+        0 0 0 164px rgba(37, 99, 235, .008);
+      animation: researchHaloRotate 28s linear infinite;
     }
 
-    .research-particle::after {
+    .home-academic-hero::after {
       content: "";
       position: absolute;
-      inset: -7px;
-      border: 1px solid rgba(37, 99, 235, .09);
+      width: 8px;
+      height: 8px;
+      right: 16.8%;
+      top: 14%;
+      z-index: -1;
       border-radius: 50%;
+      background: rgba(37, 99, 235, .5);
+      box-shadow:
+        0 0 0 8px rgba(37, 99, 235, .055),
+        0 0 24px rgba(37, 99, 235, .18);
+      animation: researchSignalPulse 3.4s ease-in-out infinite;
     }
 
-    .research-particle.p1 { left: 9%; top: 18%; animation: particleOrbitA 16s ease-in-out infinite; }
-    .research-particle.p2 { left: 26%; top: 34%; animation: particleOrbitB 20s ease-in-out -5s infinite; }
-    .research-particle.p3 { right: 18%; top: 17%; animation: particleOrbitC 18s ease-in-out -2s infinite; }
-    .research-particle.p4 { right: 8%; top: 46%; animation: particleOrbitA 23s ease-in-out -9s infinite; }
-    .research-particle.p5 { left: 18%; top: 68%; animation: particleOrbitC 24s ease-in-out -7s infinite; }
-    .research-particle.p6 { right: 32%; top: 76%; animation: particleOrbitB 21s ease-in-out -11s infinite; }
-    .research-particle.p7 { left: 48%; top: 52%; animation: particleOrbitA 27s ease-in-out -13s infinite; }
-    .research-particle.p8 { right: 12%; top: 88%; animation: particleOrbitC 22s ease-in-out -4s infinite; }
-
-    .research-data-ring {
-      position: absolute;
-      width: 330px;
-      height: 330px;
-      right: 4%;
-      top: 13%;
-      border: 1px solid rgba(37, 99, 235, .06);
-      border-radius: 50%;
-      opacity: .7;
-      animation: researchRingRotate 38s linear infinite;
+    /* High-end restrained motion for interactive surfaces. */
+    .home-academic-hero .profile-panel,
+    .pillar-card,
+    .pub-row,
+    .signal-grid a,
+    .academic-contact-card,
+    .button,
+    .quick-links a {
+      transform: translateZ(0);
+      transition:
+        transform .34s cubic-bezier(.2,.8,.2,1),
+        border-color .34s ease,
+        box-shadow .34s ease,
+        background-color .34s ease;
     }
 
-    .research-data-ring::before,
-    .research-data-ring::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 1px dashed rgba(37, 99, 235, .055);
+    .home-academic-hero .profile-panel:hover {
+      transform: translate3d(0, -6px, 0);
+      box-shadow: 0 24px 60px rgba(8, 17, 31, .13);
     }
 
-    .research-data-ring::before { inset: 48px; }
-    .research-data-ring::after  { inset: 106px; }
-
-    .research-data-ring span {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: rgba(37, 99, 235, .48);
-      top: 50%;
-      left: -2px;
-      transform: translateY(-50%);
-      box-shadow: 0 0 14px rgba(37, 99, 235, .18);
+    .pillar-card:hover {
+      transform: translate3d(0, -6px, 0);
+      border-color: rgba(37, 99, 235, .22);
     }
 
-    @keyframes researchDotDrift {
-      from { transform: translate3d(0, 0, 0); }
-      to   { transform: translate3d(52px, 52px, 0); }
+    .pub-row:hover {
+      transform: translate3d(5px, 0, 0);
     }
 
-    @keyframes researchDotDriftReverse {
-      from { transform: translate3d(0, 0, 0) scale(1.05); }
-      to   { transform: translate3d(-96px, 96px, 0) scale(1.05); }
+    .signal-grid a:hover,
+    .button:hover,
+    .quick-links a:hover {
+      transform: translate3d(0, -2px, 0);
     }
 
-    @keyframes researchDashFlow {
-      from { stroke-dashoffset: 0; }
-      to   { stroke-dashoffset: -170; }
+    @keyframes researchHaloRotate {
+      from { transform: rotate(0deg) scale(.98); }
+      50%  { transform: rotate(180deg) scale(1.04); }
+      to   { transform: rotate(360deg) scale(.98); }
     }
 
-    @keyframes researchRingRotate {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-    @keyframes particleOrbitA {
-      0%,100% { transform: translate3d(0,0,0) scale(.9); opacity: .42; }
-      35%     { transform: translate3d(20px,-14px,0) scale(1.15); opacity: .85; }
-      70%     { transform: translate3d(-11px,18px,0) scale(1); opacity: .62; }
-    }
-
-    @keyframes particleOrbitB {
-      0%,100% { transform: translate3d(0,0,0) scale(.85); opacity: .38; }
-      45%     { transform: translate3d(-18px,-22px,0) scale(1.12); opacity: .82; }
-      75%     { transform: translate3d(12px,10px,0) scale(.96); opacity: .58; }
-    }
-
-    @keyframes particleOrbitC {
-      0%,100% { transform: translate3d(0,0,0) scale(.92); opacity: .4; }
-      40%     { transform: translate3d(16px,17px,0) scale(1.08); opacity: .8; }
-      80%     { transform: translate3d(-15px,-9px,0) scale(1); opacity: .55; }
+    @keyframes researchSignalPulse {
+      0%, 100% {
+        transform: scale(.82);
+        opacity: .45;
+      }
+      50% {
+        transform: scale(1.22);
+        opacity: .92;
+      }
     }
 
     @media (max-width: 760px) {
-      .research-dot-layer {
-        background-size: 44px 44px, 70px 70px;
-        opacity: .62;
+      #research-particle-canvas {
+        opacity: .76;
       }
 
-      .research-network-lines {
-        opacity: .2;
+      .research-canvas-wash {
+        opacity: .8;
       }
 
-      .research-data-ring {
-        width: 230px;
-        height: 230px;
-        right: -105px;
-        top: 16%;
+      .home-academic-hero::before {
+        right: -45%;
+        top: -18%;
       }
 
-      .research-particle.p2,
-      .research-particle.p4,
-      .research-particle.p6,
-      .research-particle.p8 {
-        display: none;
+      .home-academic-hero .profile-panel:hover,
+      .pillar-card:hover,
+      .pub-row:hover,
+      .signal-grid a:hover {
+        transform: none;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .research-dot-layer,
-      .research-network-lines path,
-      .research-particle,
-      .research-data-ring {
+      #research-particle-canvas {
+        opacity: .34;
+      }
+
+      .home-academic-hero::before,
+      .home-academic-hero::after {
         animation: none !important;
+      }
+
+      .home-academic-hero .profile-panel,
+      .pillar-card,
+      .pub-row,
+      .signal-grid a,
+      .academic-contact-card,
+      .button,
+      .quick-links a {
+        transition-duration: .01ms !important;
       }
     }
 
@@ -404,7 +380,6 @@
     "email": "mailto:kazi.asad@northsouth.edu",
     "sameAs": [
       "https://github.com/donnowhattodo",
-      "https://github.com/donnowhattodo",
       "https://linkedin.com/in/kaziasadcse",
       "https://scholar.google.com/citations?user=24zDLJMAAAAJ&hl=en",
       "https://twitter.com/ImKaziAsad",
@@ -416,29 +391,8 @@
 </head>
 <body>
 
-  <div class="research-network-bg" aria-hidden="true">
-    <div class="research-dot-layer"></div>
-    <div class="research-dot-layer layer-two"></div>
-
-    <div class="research-network-lines">
-      <svg viewBox="0 0 1600 1000" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M-120 210 C 180 50, 360 390, 650 245 S 1160 85, 1710 260"></path>
-        <path d="M-80 610 C 250 430, 460 760, 790 590 S 1240 420, 1690 640"></path>
-        <path d="M240 -80 C 360 220, 670 130, 770 420 S 930 760, 1260 1080"></path>
-      </svg>
-    </div>
-
-    <span class="research-particle p1"></span>
-    <span class="research-particle p2"></span>
-    <span class="research-particle p3"></span>
-    <span class="research-particle p4"></span>
-    <span class="research-particle p5"></span>
-    <span class="research-particle p6"></span>
-    <span class="research-particle p7"></span>
-    <span class="research-particle p8"></span>
-
-    <div class="research-data-ring"><span></span></div>
-  </div>
+  <canvas id="research-particle-canvas" aria-hidden="true"></canvas>
+  <div class="research-canvas-wash" aria-hidden="true"></div>
 
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="site-shell">
@@ -503,7 +457,7 @@
             </ul>
           </div>
           <div class="quick-links">
-            <a href="https://github.com/kazi-hafiz-md-asad" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.48.09.65-.2.65-.46v-1.68c-2.66.58-3.22-1.13-3.22-1.13-.43-1.11-1.06-1.4-1.06-1.4-.87-.6.07-.59.07-.59.96.07 1.47.99 1.47.99.86 1.47 2.25 1.05 2.8.8.09-.63.34-1.05.61-1.29-2.12-.24-4.35-1.06-4.35-4.7 0-1.04.37-1.9.99-2.56-.1-.24-.43-1.21.09-2.52 0 0 .8-.26 2.61.98A9.1 9.1 0 0 1 12 7.34c.81 0 1.61.11 2.37.32 1.81-1.24 2.61-.98 2.61-.98.52 1.31.19 2.28.09 2.52.62.66.99 1.52.99 2.56 0 3.65-2.23 4.45-4.36 4.69.34.3.65.88.65 1.77v2.54c0 .26.17.56.66.46A9.5 9.5 0 0 0 12 2.5Z"/></svg></a>
+            <a href="https://github.com/donnowhattodo" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.48.09.65-.2.65-.46v-1.68c-2.66.58-3.22-1.13-3.22-1.13-.43-1.11-1.06-1.4-1.06-1.4-.87-.6.07-.59.07-.59.96.07 1.47.99 1.47.99.86 1.47 2.25 1.05 2.8.8.09-.63.34-1.05.61-1.29-2.12-.24-4.35-1.06-4.35-4.7 0-1.04.37-1.9.99-2.56-.1-.24-.43-1.21.09-2.52 0 0 .8-.26 2.61.98A9.1 9.1 0 0 1 12 7.34c.81 0 1.61.11 2.37.32 1.81-1.24 2.61-.98 2.61-.98.52 1.31.19 2.28.09 2.52.62.66.99 1.52.99 2.56 0 3.65-2.23 4.45-4.36 4.69.34.3.65.88.65 1.77v2.54c0 .26.17.56.66.46A9.5 9.5 0 0 0 12 2.5Z"/></svg></a>
             <a href="https://scholar.google.com/citations?user=24zDLJMAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2.5 9 9.5-5.5L21.5 9 12 14.5z"/><path d="M6.2 11.2v5.2c2.8 2.2 8.8 2.2 11.6 0v-5.2M21.5 9v6.4"/></svg></a>
             <a href="https://linkedin.com/in/kaziasadcse" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 8.6v10M5.2 5.2v.1M9.6 18.6v-5.5c0-2.4 3-3.2 3-0.2v5.7M12.6 13.1c.2-3.9 6.2-4.2 6.2.3v5.2"/></svg></a>
             <a href="mailto:kaziasad061@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18v13H3z"/><path d="m4 7 8 6 8-6"/></svg></a>
@@ -515,7 +469,7 @@
     <section class="signal-strip" aria-label="Academic and technical profiles">
       <div class="container signal-grid reveal">
         <a href="https://scholar.google.com/citations?user=24zDLJMAAAAJ&hl=en" target="_blank" rel="noopener"><span>Google Scholar</span><strong>Publication profile</strong></a>
-        <a href="https://github.com/donnowhattodo" target="_blank" rel="noopener"><span>GitHub</span><strong>Research code and software</strong></a>
+        <a href="https://github.com/donnowhattodo" target="_blank" rel="noopener"><span>GitHub</span><strong>Code, repositories, and research software</strong></a>
         <a href="https://leetcode.com/u/ImMasterPutin/" target="_blank" rel="noopener"><span>LeetCode</span><strong>Algorithmic problem solving</strong></a>
         <a href="https://www.deep-ml.com/profile/7ysd47LWjIM21Ng2NGWvlmxS0Du1" target="_blank" rel="noopener"><span>Deep-ML</span><strong>Machine learning exercises</strong></a>
       </div>
@@ -669,7 +623,7 @@
       </div>
       <div class="footer-social">
         <a href="mailto:kazi.asad@northsouth.edu">Email</a>
-        <a href="https://github.com/kazi-hafiz-md-asad" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/donnowhattodo" target="_blank" rel="noopener">GitHub</a>
         <a href="https://scholar.google.com/citations?user=24zDLJMAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
       </div>
     </div>
@@ -678,5 +632,391 @@
 </div>
 <script src="assets/js/site-config.js"></script>
 <script src="assets/js/main.js"></script>
+
+<script>
+(() => {
+  const canvas = document.getElementById('research-particle-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d', { alpha: true });
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+  let particles = [];
+  let animationFrame = null;
+  let lastTime = performance.now();
+
+  const pointer = {
+    x: -9999,
+    y: -9999,
+    lastX: -9999,
+    lastY: -9999,
+    vx: 0,
+    vy: 0,
+    speed: 0,
+    active: false,
+    energy: 0
+  };
+
+  const settings = {
+    connectionDistance: 128,
+    pointerRadius: 210,
+    baseSpeed: 0.30,
+    friction: 0.987,
+    pointerForce: 1.85,
+    swirlForce: 0.54
+  };
+
+  function parseAccent() {
+    const raw = getComputedStyle(document.documentElement)
+      .getPropertyValue('--accent')
+      .trim();
+
+    if (raw.startsWith('#')) {
+      let hex = raw.slice(1);
+      if (hex.length === 3) {
+        hex = hex.split('').map(c => c + c).join('');
+      }
+      const value = parseInt(hex, 16);
+      if (!Number.isNaN(value)) {
+        return {
+          r: (value >> 16) & 255,
+          g: (value >> 8) & 255,
+          b: value & 255
+        };
+      }
+    }
+
+    const match = raw.match(/(\d+)[^\d]+(\d+)[^\d]+(\d+)/);
+    if (match) {
+      return {
+        r: Number(match[1]),
+        g: Number(match[2]),
+        b: Number(match[3])
+      };
+    }
+
+    return { r: 37, g: 99, b: 235 };
+  }
+
+  let accent = parseAccent();
+
+  class Particle {
+    constructor() {
+      this.reset(true);
+    }
+
+    reset(initial = false) {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+
+      const angle = Math.random() * Math.PI * 2;
+      const speed = settings.baseSpeed * (0.55 + Math.random() * 1.4);
+
+      this.vx = Math.cos(angle) * speed;
+      this.vy = Math.sin(angle) * speed;
+
+      this.homeVx = this.vx;
+      this.homeVy = this.vy;
+
+      this.radius = 0.8 + Math.random() * 1.55;
+      this.depth = 0.58 + Math.random() * 0.78;
+      this.alpha = 0.28 + Math.random() * 0.48;
+      this.phase = Math.random() * Math.PI * 2;
+
+      if (!initial) {
+        const edge = Math.floor(Math.random() * 4);
+        if (edge === 0) this.x = -8;
+        if (edge === 1) this.x = width + 8;
+        if (edge === 2) this.y = -8;
+        if (edge === 3) this.y = height + 8;
+      }
+    }
+
+    update(dt, time) {
+      const dx = this.x - pointer.x;
+      const dy = this.y - pointer.y;
+      const distSq = dx * dx + dy * dy;
+      const pointerRadiusSq = settings.pointerRadius * settings.pointerRadius;
+
+      if (pointer.active && distSq < pointerRadiusSq) {
+        const dist = Math.sqrt(distSq) || 1;
+        const influence = 1 - dist / settings.pointerRadius;
+
+        // Repel nodes from the pointer.
+        const repel = influence * settings.pointerForce * this.depth;
+        this.vx += (dx / dist) * repel * dt;
+        this.vy += (dy / dist) * repel * dt;
+
+        // Fast mouse movement creates a research-flow / vector-field swirl.
+        const tangentX = -dy / dist;
+        const tangentY = dx / dist;
+        const directionalEnergy = Math.min(pointer.speed / 36, 1.9);
+
+        this.vx += tangentX * influence * settings.swirlForce * directionalEnergy * dt;
+        this.vy += tangentY * influence * settings.swirlForce * directionalEnergy * dt;
+
+        // Some of the pointer velocity transfers into the particle field,
+        // which makes direction visibly change when the mouse "cuts" through it.
+        this.vx += pointer.vx * influence * 0.012 * this.depth;
+        this.vy += pointer.vy * influence * 0.012 * this.depth;
+      }
+
+      // Slow autonomous scientific-flow motion so the field never feels static.
+      this.vx += Math.sin(time * 0.00028 + this.phase) * 0.0028 * dt;
+      this.vy += Math.cos(time * 0.00024 + this.phase) * 0.0024 * dt;
+
+      // Gently restore the original drift instead of letting the field explode.
+      this.vx += (this.homeVx - this.vx) * 0.0042 * dt;
+      this.vy += (this.homeVy - this.vy) * 0.0042 * dt;
+
+      const maxSpeed = 2.75 + pointer.energy * 1.35;
+      const currentSpeed = Math.hypot(this.vx, this.vy);
+      if (currentSpeed > maxSpeed) {
+        const scale = maxSpeed / currentSpeed;
+        this.vx *= scale;
+        this.vy *= scale;
+      }
+
+      this.vx *= Math.pow(settings.friction, dt);
+      this.vy *= Math.pow(settings.friction, dt);
+
+      this.x += this.vx * dt;
+      this.y += this.vy * dt;
+
+      const margin = 32;
+      if (this.x < -margin) this.x = width + margin;
+      if (this.x > width + margin) this.x = -margin;
+      if (this.y < -margin) this.y = height + margin;
+      if (this.y > height + margin) this.y = -margin;
+    }
+
+    draw(time) {
+      const pulse = 0.78 + Math.sin(time * 0.001 + this.phase) * 0.22;
+      const radius = this.radius * pulse;
+
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${this.alpha})`;
+      ctx.fill();
+
+      // A few larger particles receive a tiny halo, like highlighted data nodes.
+      if (this.radius > 1.75) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, radius + 4.2, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${this.alpha * 0.11})`;
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+      }
+    }
+  }
+
+  function desiredParticleCount() {
+    const area = width * height;
+    if (reduceMotion.matches) return Math.max(38, Math.min(72, Math.round(area / 26000)));
+    if (width < 700) return Math.max(62, Math.min(94, Math.round(area / 15000)));
+    return Math.max(105, Math.min(185, Math.round(area / 10500)));
+  }
+
+  function rebuildParticles() {
+    const count = desiredParticleCount();
+    particles = Array.from({ length: count }, () => new Particle());
+  }
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    accent = parseAccent();
+    rebuildParticles();
+  }
+
+  function drawConnections() {
+    const maxDist = settings.connectionDistance;
+    const maxDistSq = maxDist * maxDist;
+
+    for (let i = 0; i < particles.length; i++) {
+      const a = particles[i];
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const b = particles[j];
+
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const distSq = dx * dx + dy * dy;
+
+        if (distSq < maxDistSq) {
+          const dist = Math.sqrt(distSq);
+          const alpha = (1 - dist / maxDist) * 0.105;
+
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${alpha})`;
+          ctx.lineWidth = 0.56;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function drawPointerField() {
+    if (!pointer.active || pointer.energy < 0.02) return;
+
+    // Mouse influence ring.
+    const gradient = ctx.createRadialGradient(
+      pointer.x, pointer.y, 0,
+      pointer.x, pointer.y, settings.pointerRadius
+    );
+
+    gradient.addColorStop(
+      0,
+      `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${0.065 * pointer.energy})`
+    );
+    gradient.addColorStop(
+      0.38,
+      `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${0.028 * pointer.energy})`
+    );
+    gradient.addColorStop(
+      1,
+      `rgba(${accent.r}, ${accent.g}, ${accent.b}, 0)`
+    );
+
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(pointer.x, pointer.y, settings.pointerRadius, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Direction vector: subtle line showing the mouse's current flow direction.
+    if (pointer.speed > 3) {
+      const length = Math.min(pointer.speed * 2.2, 74);
+      const mag = Math.hypot(pointer.vx, pointer.vy) || 1;
+      const nx = pointer.vx / mag;
+      const ny = pointer.vy / mag;
+
+      ctx.beginPath();
+      ctx.moveTo(pointer.x - nx * length * 0.18, pointer.y - ny * length * 0.18);
+      ctx.lineTo(pointer.x + nx * length, pointer.y + ny * length);
+      ctx.strokeStyle = `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${0.13 * pointer.energy})`;
+      ctx.lineWidth = 0.8;
+      ctx.setLineDash([3, 7]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+  }
+
+  function animate(now) {
+    const elapsed = Math.min((now - lastTime) / 16.667, 2);
+    lastTime = now;
+
+    ctx.clearRect(0, 0, width, height);
+
+    pointer.energy *= 0.955;
+    pointer.vx *= 0.88;
+    pointer.vy *= 0.88;
+    pointer.speed = Math.hypot(pointer.vx, pointer.vy);
+
+    for (const particle of particles) {
+      particle.update(elapsed, now);
+    }
+
+    drawConnections();
+
+    for (const particle of particles) {
+      particle.draw(now);
+    }
+
+    drawPointerField();
+
+    animationFrame = requestAnimationFrame(animate);
+  }
+
+  function onPointerMove(event) {
+    const x = event.clientX;
+    const y = event.clientY;
+
+    if (!pointer.active) {
+      pointer.lastX = x;
+      pointer.lastY = y;
+    }
+
+    pointer.vx = x - pointer.lastX;
+    pointer.vy = y - pointer.lastY;
+    pointer.speed = Math.hypot(pointer.vx, pointer.vy);
+    pointer.energy = Math.min(1.35, 0.22 + pointer.speed / 24);
+
+    pointer.x = x;
+    pointer.y = y;
+    pointer.lastX = x;
+    pointer.lastY = y;
+    pointer.active = true;
+  }
+
+  function onPointerLeave() {
+    pointer.active = false;
+    pointer.x = -9999;
+    pointer.y = -9999;
+  }
+
+  function onTouchMove(event) {
+    const touch = event.touches && event.touches[0];
+    if (!touch) return;
+
+    onPointerMove({
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+  }
+
+  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('pointermove', onPointerMove, { passive: true });
+  document.documentElement.addEventListener('mouseleave', onPointerLeave, { passive: true });
+  window.addEventListener('touchmove', onTouchMove, { passive: true });
+  window.addEventListener('touchend', onPointerLeave, { passive: true });
+
+  // Re-read the site's accent after theme changes.
+  const themeObserver = new MutationObserver(() => {
+    accent = parseAccent();
+  });
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class', 'data-theme', 'style']
+  });
+
+  reduceMotion.addEventListener?.('change', resize);
+
+  resize();
+
+  if (reduceMotion.matches) {
+    // Render a calm static field for reduced-motion users.
+    ctx.clearRect(0, 0, width, height);
+    drawConnections();
+    particles.forEach(p => p.draw(0));
+  } else {
+    animationFrame = requestAnimationFrame(animate);
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && animationFrame) {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = null;
+    } else if (!document.hidden && !reduceMotion.matches && !animationFrame) {
+      lastTime = performance.now();
+      animationFrame = requestAnimationFrame(animate);
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
