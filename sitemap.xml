@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://kazi-hafiz-md-asad.github.io/</loc></url>
-  <url><loc>https://kazi-hafiz-md-asad.github.io/research.html</loc></url>
-  <url><loc>https://kazi-hafiz-md-asad.github.io/publications.html</loc></url>
-  <url><loc>https://kazi-hafiz-md-asad.github.io/projects.html</loc></url>
-  <url><loc>https://kazi-hafiz-md-asad.github.io/experience.html</loc></url>
-  <url><loc>https://kazi-hafiz-md-asad.github.io/contact.html</loc></url>
+<?xml-stylesheet type="text/css" href="https://www.xml-sitemaps.com/css/sitemap.css"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+       <loc>https://kazi-hafiz-md-asad.github.io/</loc>
+       <lastmod>2026-08-30T20:51:32+00:00</lastmod>
+       <priority>1.0000</priority>
+  </url>
+  <url>
+       <loc>https://kazi-hafiz-md-asad.github.io/research.html</loc>
+       <lastmod>2026-08-30T20:51:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://kazi-hafiz-md-asad.github.io/publications.html</loc>
+       <lastmod>2026-08-30T20:51:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://kazi-hafiz-md-asad.github.io/projects.html</loc>
+       <lastmod>2026-08-30T20:51:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://kazi-hafiz-md-asad.github.io/experience.html</loc>
+       <lastmod>2026-08-30T20:51:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://kazi-hafiz-md-asad.github.io/contact.html</loc>
+       <lastmod>2026-08-30T20:51:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
 </urlset>
